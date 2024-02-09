@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/head}"><title>Profile</title></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/navbar}">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Profile</h1>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6" th:object="${user}">
+                        <h2>User</h2>
+                        <h4 th:text="'Username: ' + *{username}"></h4>
+                        <h4 th:text="'Name: ' + *{name}"></h4>
+                        <h4 th:text="'Email: ' + *{email}"></h4>
+                        <h4 th:text="'Money: ' + *{money}"></h4>
+                        <b>User Roles: </b>
+                        <div sec:authentication="principal.authorities"></div>
+                        <br>
+                        <h4 sec:authorize="hasAuthority('ROLE_USER')" th:text="'Товары в собственности:'"></h4>
+                        <div sec:authorize="hasAuthority('ROLE_USER')" th:if="${user.getOwnershipItems().isEmpty()}" th:text="${'Отсутствуют'}"></div>
+                        <div sec:authorize="hasAuthority('ROLE_USER')" th:if="${!user.getOwnershipItems().isEmpty()}">
+                            <div th:each="c : ${user.getOwnershipItems()}">
+                                <h5 th:text="'Name: ' + ${c.itemName}"></h5>
+                                <h6>
+                                    <a class="btn-block" th:href="@{/items/item-details/{item-id}(item-id=${c.id})}">Details</a>
+                                </h6>
+                                <br>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <h4 sec:authorize="hasAuthority('ROLE_USER')" th:text="'Товары на продажу:'"></h4>
+                        <div sec:authorize="hasAuthority('ROLE_USER')" th:if="${user.getProductItems().isEmpty()}" th:text="${'Отсутствуют'}"></div>
+                        <div sec:authorize="hasAuthority('ROLE_USER')" th:if="${!user.getProductItems().isEmpty()}">
+                            <div th:each="c : ${user.getProductItems()}">
+                                <h5 th:text="'Name: ' + ${c.itemName}"></h5>
+                                <h6>
+                                    <a class="btn-block" th:href="@{/items/item-details/{item-id}(item-id=${c.id})}">Details</a>
+                                </h6>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div sec:authorize="hasAuthority('ROLE_USER')" class="col-md-6"><img src="/pic/person_1.png" height="350px"></div>
+                    <div sec:authorize="hasAuthority('ROLE_ADMIN')" class="col-md-6"><img src="/pic/admin_1.png" height="350px"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

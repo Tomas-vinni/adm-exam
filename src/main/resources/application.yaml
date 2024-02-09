@@ -1,0 +1,36 @@
+#Spring Properties
+spring:
+  #Data Source Properties
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/market_db
+    username: postgres
+    password: postgres
+
+  #JPA Properties
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: TRUE
+        show_sql: TRUE
+        hbm2ddl:
+          auto: update
+
+#Disable the default loggers
+#Show SQL executed with parameter bindings
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor: TRACE
+    blog: WARN
+server:
+  port: 8787
+
+#Default password0
+const:
+  default:
+    password: default_pass

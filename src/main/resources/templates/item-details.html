@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/head}"><title>Book Details</title></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/navbar}">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Item Details</h1>
+                    <br>
+                    <br>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6"><img src="/pic/item_1.png" height="350px" alt="Изображение предмета"></div>
+                    <div class="col-md-6 pt-3">
+                        <h2>Book</h2>
+                        <h4 th:text="'Name: ' + ${itemDetails.itemName}"></h4>
+                        <h4 th:text="'Cost: ' + ${itemDetails.cost}"></h4>
+                        <h6 th:text="'Descriptions: ' + ${itemDetails.description}"></h6>
+                        <br>
+                        <div class="align-bottom"><a class="btn btn-danger align-bottom"
+                                                     th:if="${itemDetails.owner.username.equals(#authentication.getName())}"
+                                                     th:href="@{/items/item-delete/{item-id}(item-id=${itemDetails.id})}">Delete item</a>
+                        </div>
+                        <div class="align-bottom"><a class="btn btn-danger align-bottom"
+                                                     sec:authorize="hasAuthority('ROLE_USER')"
+                                                     th:if="${!itemDetails.owner.username.equals(#authentication.getName())}"
+                                                     th:href="@{/items/item-buy/{item-id}(item-id=${itemDetails.id})}">Buy item</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

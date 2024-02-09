@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"><title>Book Add</title></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/navbar}">Navbar</div>
+<div class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Add Item</h1>
+                </div>
+                <form th:action="@{/items/add}"
+                      th:method="post"
+                      th:object="${addItemDTO}"
+                      class="m-md-auto w-50 pb-3">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="itemName">Name</label>
+                        <input th:field="*{itemName}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="itemName" aria-describedby="itemName" name="itemName"/>
+                        <small th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="itemName">Cost</label>
+                        <input th:field="*{cost}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="cost" aria-describedby="cost" name="cost"/>
+                        <small th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <input th:field="*{description}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="description" aria-describedby="description" name="description"/>
+                        <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+<!--                    <fieldset class="mb-3">-->
+<!--                        <legend>Выберите тип предмета</legend>-->
+<!--                        <div class="form-check">-->
+<!--                            <label class="form-check-label" for="ownershipType">-->
+<!--                                <input th:field="*{itemType}"-->
+<!--                                       th:value="0"-->
+<!--                                       th:errorclass="is-invalid"-->
+<!--                                       type="radio" class="form-check-input" name="ownershipType" id="ownershipType"/>-->
+<!--                                <span>OWNERSHIP</span>-->
+<!--                            </label>-->
+<!--                        </div>-->
+
+<!--                        <div class="form-check disabled">-->
+<!--                            <label class="form-check-label" for="productType">-->
+<!--                                <input th:field="*{itemType}"-->
+<!--                                       th:value="1"-->
+<!--                                       th:errorclass="is-invalid"-->
+<!--                                       type="radio" class="form-check-input" name="productType" id="productType"/>-->
+<!--                                <span>PRODUCT</span>-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                        <small th:if="${#fields.hasErrors('itemType')}" th:errors="*{itemType}"-->
+<!--                               class="text-danger">Error message</small>-->
+<!--                    </fieldset>-->
+
+                    <script>
+                        document.getElementById("productType").setAttribute("checked","checked")
+                    </script>
+
+                    <button type="submit" class="btn btn-secondary">Add Item</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="~{fragments/footer}"></footer>
+</html>
