@@ -10,12 +10,12 @@
     </parent>
     <groupId>ru.dvinni</groupId>
     <artifactId>davito</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
     <name>DAvito</name>
     <description>DAvito</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>

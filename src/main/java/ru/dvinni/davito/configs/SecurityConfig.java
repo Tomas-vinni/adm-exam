@@ -56,13 +56,13 @@ public class SecurityConfig {
         http
                 .userDetailsService(getUserDetailsService())
                 .authorizeHttpRequests(
-                        authorizeHttpRequests ->
+                        authorizeHttpRequests ->e
                                 authorizeHttpRequests
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll()
                                         .requestMatchers("/pic/**")
                                         .permitAll()
-                                        .requestMatchers("/", "/users/register", "/users/login", "/users/login-error", "/items/all-product")
+                                        .requestMatchers("/", "/users/register", "/users/login", "/users/login-error", "/items/all-product", "/test")
                                         .permitAll()
                                         .requestMatchers("/items/add").hasRole(UserRoles.USER.name())
                                         .anyRequest().authenticated()
