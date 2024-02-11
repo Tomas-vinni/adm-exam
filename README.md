@@ -57,6 +57,7 @@ sudo mvn install
 ```
 #### 5. Разверните базу данных в Docker контейнере:
 ```
+sudo systemctl restart docker.service
 sudo docker-compose up --build -d
 ```
 #### 6. Скопируйте jar файл для релиза:
