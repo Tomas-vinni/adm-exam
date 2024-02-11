@@ -56,7 +56,7 @@ public class SecurityConfig {
         http
                 .userDetailsService(getUserDetailsService())
                 .authorizeHttpRequests(
-                        authorizeHttpRequests ->e
+                        authorizeHttpRequests ->
                                 authorizeHttpRequests
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                         .permitAll()
