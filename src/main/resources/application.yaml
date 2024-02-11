@@ -3,7 +3,7 @@ spring:
   #Data Source Properties
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/davito_db
+    url: jdbc:postgresql://localhost:15432/davito_db
     username: postgres
     password: postgres
 
