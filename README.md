@@ -62,7 +62,7 @@ sudo docker-compose up --build -d
 ```
 #### 6. Скопируйте jar файл для релиза:
 ```
-sudo cp /home/superuser/app/davito/adm-exam/target/davito-0.0.1.jar /var/www/app/davito
+sudo cp /home/superuser/app/adm-exam/target/davito-0.0.1.jar /var/www/app/davito
 ```
 #### 7. Создайте демона, запускающего приложение:
 ```
