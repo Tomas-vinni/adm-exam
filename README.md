@@ -46,7 +46,7 @@ sudo chmod 755 -R /var/www/app/davito
 ```
 cd /home/superuser/app
 sudo git clone https://github.com/Tomas-vinni/adm-exam.git
-cd davito/
+cd adm-exam/
 ```
 User: Tomas-vinni
 Pass: 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
